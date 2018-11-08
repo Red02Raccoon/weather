@@ -3,14 +3,15 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
-		"react": "^16.6.1",
-		"react-dom": "^16.6.1",
-		"react-scripts": "2.1.1",
 		"enzyme": "^3.7.0",
 		"enzyme-adapter-react-16": "^1.6.0",
+		"react": "^16.6.1",
+		"react-dom": "^16.6.1",
 		"react-redux": "^5.0.7",
+		"react-scripts": "2.1.1",
 		"redux": "^4.0.1",
-		"redux-devtools-extension": "^2.13.5"
+		"redux-devtools-extension": "^2.13.5",
+		"redux-saga": "^0.16.2"
 	},
 	"scripts": {
 		"start": "react-scripts start",
