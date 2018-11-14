@@ -8,11 +8,14 @@
 		"react": "^16.6.1",
 		"react-dom": "^16.6.1",
 		"react-redux": "^5.0.7",
+		"react-responsive": "^6.0.1",
 		"react-scripts": "2.1.1",
 		"redux": "^4.0.1",
-		"redux-devtools-extension": "^2.13.5",
 		"redux-saga": "^0.16.2",
 		"styled-components": "^4.0.3"
+	},
+	"devDependencies": {
+		"redux-devtools-extension": "^2.13.5"
 	},
 	"scripts": {
 		"start": "react-scripts start",

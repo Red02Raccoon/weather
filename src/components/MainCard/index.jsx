@@ -1,7 +1,9 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 import bg from "../../images/bg.jpg";
+import MoreInfoBlock from "./MoreInfoBlock";
+import MainInfoBlock from "./MainInfoBlock";
 
 const data = [
   {
@@ -15,6 +17,18 @@ const data = [
   {
     title: "Dew point",
     value: "3C"
+  },
+  {
+    title: "Humidity",
+    value: "55%"
+  },
+  {
+    title: "Wind speed",
+    value: "11 kmph NW"
+  },
+  {
+    title: "Pressure",
+    value: "1020 mbar"
   }
 ];
 
@@ -25,6 +39,8 @@ const MainCardContainer = styled.div`
   display: flex;
   justify-content: space-between;
   min-height: 455px;
+  position: relative;
+  z-index: 1;
 `;
 
 const MainCardBlock = styled.div`
@@ -34,14 +50,7 @@ const MainCardBlock = styled.div`
   background-repeat: no-repeat;
   margin-top: ${props => props.mTop};
   overflow: hidden;
-`;
-
-const MainCardLeft = styled.div``;
-const MainCardRight = styled.div`
   position: relative;
-  max-width: 480px;
-  width: 100%;
-  padding: 30px 0 30px 90px;
   &:after {
     content: "";
     display: inline-block;
@@ -50,55 +59,22 @@ const MainCardRight = styled.div`
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(75, 82, 92, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
   }
 `;
 
-const MoreInfoList = styled.ul`
-  position: relative;
-  z-index: 1;
-  font-size: 16px;
-  color: #fff;
-`;
+class MainCard extends Component {
+  render() {
+    return (
+      <MainCardBlock mTop={this.props.mTop}>
+        <MainCardContainer>
+          <MainInfoBlock data={data} />
 
-const MoreInfoItem = styled.li`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 10px;
-  &:not(:last-child) {
-    padding: 0 10px 30px;
-    margin-bottom: 30px;
-    border-bottom: 3px solid rgba(100%, 100%, 100%, 0.2);
+          <MoreInfoBlock data={data} />
+        </MainCardContainer>
+      </MainCardBlock>
+    );
   }
-  .value {
-    font-weight: 500;
-  }
-`;
-
-const MainCard = props => {
-  return (
-    <MainCardBlock mTop={props.mTop}>
-      <MainCardContainer>
-        <MainCardLeft>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae in
-          ad quae mollitia. Similique labore maxime eveniet fugiat, alias cum
-          esse illo enim, ipsa quos, quaerat quas rem aperiam eaque?
-        </MainCardLeft>
-        <MainCardRight>
-          <MoreInfoList>
-            {data.map((item, index) => {
-              return (
-                <MoreInfoItem>
-                  <span className="title">{item.title}</span>
-                  <span className="value">{item.value}</span>
-                </MoreInfoItem>
-              );
-            })}
-          </MoreInfoList>
-        </MainCardRight>
-      </MainCardContainer>
-    </MainCardBlock>
-  );
-};
+}
 
 export default MainCard;
