@@ -1,16 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const MainCardLeft = styled.div`
-  padding: 40px 0 40px 20px;
-`;
-
 const MainCardInfo = styled.div`
+  padding: 40px 0 40px 20px;
   color: #fff;
   font-weight: normal;
   display: flex;
   flex-direction: column;
-  height: 100%;
+  min-height: 100%;
 `;
 
 const MainCardInfoDate = styled.div`
@@ -34,19 +31,15 @@ const MainCardInfoLocation = styled.div`
   font-size: 30px;
 `;
 
-export default props => {
+export default ({ data }) => {
   return (
-    <MainCardLeft>
-      <MainCardInfo>
-        <MainCardInfoDate>
-          <div>
-            Monday <br /> November 2018
-          </div>
-        </MainCardInfoDate>
-        <MainCardInfoType>Partly cloudy</MainCardInfoType>
-        <MainCardInfoTemp>12C</MainCardInfoTemp>
-        <MainCardInfoLocation>Dnepr, Ukraine</MainCardInfoLocation>
-      </MainCardInfo>
-    </MainCardLeft>
+    <MainCardInfo>
+      <MainCardInfoDate>
+        {`${data.day}`} <br /> {`${data.month} ${data.year}`}
+      </MainCardInfoDate>
+      <MainCardInfoType>{data.weatherType}</MainCardInfoType>
+      <MainCardInfoTemp>{data.temperature}</MainCardInfoTemp>
+      <MainCardInfoLocation>{data.location}</MainCardInfoLocation>
+    </MainCardInfo>
   );
 };

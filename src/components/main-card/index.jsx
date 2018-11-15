@@ -5,32 +5,42 @@ import bg from "../../images/bg.jpg";
 import MoreInfoBlock from "./MoreInfoBlock";
 import MainInfoBlock from "./MainInfoBlock";
 
-const data = [
-  {
-    title: "Local Time",
-    value: "11:20 AM"
-  },
-  {
-    title: "Feels like",
-    value: "10C"
-  },
-  {
-    title: "Dew point",
-    value: "3C"
-  },
-  {
-    title: "Humidity",
-    value: "55%"
-  },
-  {
-    title: "Wind speed",
-    value: "11 kmph NW"
-  },
-  {
-    title: "Pressure",
-    value: "1020 mbar"
+const data = {
+  moreInfo: [
+    {
+      title: "Local Time",
+      value: "11:20 AM"
+    },
+    {
+      title: "Feels like",
+      value: "10C"
+    },
+    {
+      title: "Dew point",
+      value: "3C"
+    },
+    {
+      title: "Humidity",
+      value: "55%"
+    },
+    {
+      title: "Wind speed",
+      value: "11 kmph NW"
+    },
+    {
+      title: "Pressure",
+      value: "1020 mbar"
+    }
+  ],
+  mainInfo: {
+    day: "Monday",
+    month: "November",
+    year: "2018",
+    weatherType: "Partly cloudy",
+    temperature: "12C",
+    location: "Dnepr, Ukraine"
   }
-];
+};
 
 const MainCardContainer = styled.div`
   max-width: 1120px;
@@ -44,11 +54,11 @@ const MainCardContainer = styled.div`
 `;
 
 const MainCardBlock = styled.div`
-  background-image: url(${bg});
+  background-image: ${props => (props.bgImg ? `url(${props.bgImg})` : "")};
+  margin-top: ${props => props.mTop};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  margin-top: ${props => props.mTop};
   overflow: hidden;
   position: relative;
   &:after {
@@ -66,11 +76,10 @@ const MainCardBlock = styled.div`
 class MainCard extends Component {
   render() {
     return (
-      <MainCardBlock mTop={this.props.mTop}>
+      <MainCardBlock bgImg={bg} mTop={this.props.mTop}>
         <MainCardContainer>
-          <MainInfoBlock data={data} />
-
-          <MoreInfoBlock data={data} />
+          <MainInfoBlock data={data.mainInfo} />
+          <MoreInfoBlock data={data.moreInfo} />
         </MainCardContainer>
       </MainCardBlock>
     );

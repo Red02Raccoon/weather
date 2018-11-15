@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
-import MainCard from "../components/MainCard";
+import MainCard from "../components/main-card";
 
 const Container = styled.div`
   max-width: 1300px;

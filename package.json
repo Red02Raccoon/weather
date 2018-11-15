@@ -15,7 +15,9 @@
 		"styled-components": "^4.0.3"
 	},
 	"devDependencies": {
-		"redux-devtools-extension": "^2.13.5"
+		"node-sass": "^4.10.0",
+		"redux-devtools-extension": "^2.13.5",
+		"sass-loader": "^7.1.0"
 	},
 	"scripts": {
 		"start": "react-scripts start",

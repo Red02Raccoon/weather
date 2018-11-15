@@ -26,6 +26,7 @@ const MoreInfoBlockContainer = styled.div`
 
 const MoreInfoBlockInner = styled.div`
   padding: 30px 20px 30px 20px;
+  min-height: 100%;
   @media (min-width: 1121px) {
     padding: 30px 20px 30px 90px;
     &:after {
@@ -75,6 +76,12 @@ const MoreInfoItem = styled.li`
   .value {
     font-weight: 500;
   }
+  /* @media (max-width: 575px) {
+    &:not(:last-child) {
+      padding: 0 10px 20px;
+      margin-bottom: 20px;
+    }
+  } */
 `;
 
 const ArrowCircleButton = styled.button`
@@ -160,7 +167,7 @@ class MoreInfoBlock extends Component {
             {this.props.data.map((item, index) => {
               return (
                 <MoreInfoItem key={index}>
-                  <span className="title">{item.title}</span>
+                  <span>{item.title}</span>
                   <span className="value">{item.value}</span>
                 </MoreInfoItem>
               );
