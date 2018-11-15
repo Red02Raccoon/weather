@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
 
 import bg from "../../images/bg.jpg";
@@ -51,6 +52,9 @@ const MainCardContainer = styled.div`
   min-height: 455px;
   position: relative;
   z-index: 1;
+  @media (max-width: 1120px) {
+    padding: 0 0 0 15px;
+  }
 `;
 
 const MainCardBlock = styled.div`
@@ -75,6 +79,7 @@ const MainCardBlock = styled.div`
 
 class MainCard extends Component {
   render() {
+    console.log(this.props);
     return (
       <MainCardBlock bgImg={bg} mTop={this.props.mTop}>
         <MainCardContainer>
@@ -86,4 +91,10 @@ class MainCard extends Component {
   }
 }
 
-export default MainCard;
+function mapStateToProps(state) {
+  return {
+    weatherData: state.weatherData.data
+  };
+}
+
+export default connect(mapStateToProps)(MainCard);

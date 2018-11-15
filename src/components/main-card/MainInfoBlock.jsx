@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const MainCardInfo = styled.div`
-  padding: 40px 0 40px 20px;
+  padding: 40px 0;
   color: #fff;
   font-weight: normal;
   display: flex;

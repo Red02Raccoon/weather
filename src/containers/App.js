@@ -1,22 +1,17 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React, { Fragment, Component } from "react";
 
 import MainCard from "../components/main-card";
-
-const Container = styled.div`
-  max-width: 1300px;
-  width: 100%;
-  margin: 0 auto;
-`;
+import Footer from "../components/footer";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Container>
+      <Fragment>
+        <div className="wrapper">
           <MainCard mTop="65px" />
-        </Container>
-      </div>
+        </div>
+        <Footer />
+      </Fragment>
     );
   }
 }
