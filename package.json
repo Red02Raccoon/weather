@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
+		"downshift": "^3.1.5",
 		"enzyme": "^3.7.0",
 		"enzyme-adapter-react-16": "^1.6.0",
 		"node-sass": "^4.10.0",

@@ -8,3 +8,32 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.container {
+  max-width: 1150px;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+.header {
+  height: 66px;
+  background-color: papayawhip;
+  .container {
+    height: 100%;
+  }
+  &-content {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.combobox {
+  position: relative;
+  ul {
+    position: absolute;
+    left: 0;
+    width: 100%;
+  }
+}
