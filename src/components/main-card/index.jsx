@@ -93,7 +93,7 @@ class MainCard extends Component {
 
 function mapStateToProps(state) {
   return {
-    weatherData: state.weatherData.data
+    mainCard: state.mainCard.data
   };
 }
 
