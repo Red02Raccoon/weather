@@ -1,26 +1,27 @@
 import React, { Component } from "react";
+import { Router, Route, Switch } from "react-router-dom";
+import history from "../services/history";
+import routes from "../routes";
 import logo from "../images/icons/sun.jpg";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Weather App
-          </a>
-        </header>
-      </div>
+      <Router history={history}>
+        <Switch>
+          {routes.map((route, index) => {
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                component={route.component}
+              />
+            );
+          })}
+        </Switch>
+      </Router>
     );
   }
 }
