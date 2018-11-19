@@ -9,6 +9,16 @@ body {
   padding: 0;
 }
 
+ul {
+  li {
+    list-style: none;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
 .container {
   max-width: 1150px;
   padding: 0 15px;
@@ -26,14 +36,5 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-  }
-}
-
-.combobox {
-  position: relative;
-  ul {
-    position: absolute;
-    left: 0;
-    width: 100%;
   }
 }

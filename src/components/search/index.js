@@ -1,6 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import styled from "styled-components";
-import Downshift from "downshift";
+import "./style.scss";
+import PlacesAutocomplete, {
+  geocodeByAddress,
+  getLatLng
+} from "react-places-autocomplete";
 
 const Form = styled.form`
   display: flex;
@@ -28,82 +33,78 @@ const Input = styled.input`
   border: none;
   background-color: #4b525c;
   color: #fff;
+  outline: none;
 `;
-const items = [
-  { value: "apple" },
-  { value: "pear" },
-  { value: "orange" },
-  { value: "grape" },
-  { value: "banana" }
-];
 
 class Search extends Component {
-  state = {
-    value: ""
-  };
+  state = { address: "" };
+
   handleSubmit = e => {
     e.preventDefault();
+    console.log(this.state.value);
   };
-  handleChange = e => {
-    this.setState({ value: e.target.value });
+
+  handleChange = address => {
+    this.setState({ address });
   };
+
+  handleSelect = address => {
+    console.log(address, "address");
+    this.setState({ address });
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => console.log("Success", latLng))
+      .catch(error => console.error("Error", error));
+  };
+
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
         <SearchBox>
-          {/* <Input
-            placeholder="type in location name..."
+          <PlacesAutocomplete
+            value={this.state.address}
             onChange={this.handleChange}
-          /> */}
-          <Downshift
-            onChange={selection => alert(`You selected ${selection.value}`)}
-            itemToString={item => (item ? item.value : "")}
+            onSelect={this.handleSelect}
+            searchOptions={{ types: ["(cities)"] }}
           >
             {({
               getInputProps,
-              getItemProps,
-              getLabelProps,
-              getMenuProps,
-              isOpen,
-              inputValue,
-              highlightedIndex,
-              selectedItem
+              suggestions,
+              getSuggestionItemProps,
+              loading
             }) => (
               <div className="combobox">
                 <Input
-                  {...getInputProps()}
-                  placeholder="type in a location name..."
+                  {...getInputProps({
+                    placeholder: "Search Places ...",
+                    className: "location-search-input"
+                  })}
                 />
-                <ul {...getMenuProps()}>
-                  {isOpen
-                    ? items
-                        .filter(
-                          item => !inputValue || item.value.includes(inputValue)
-                        )
-                        .map((item, index) => (
-                          <li
-                            {...getItemProps({
-                              key: item.value,
-                              index,
-                              item,
-                              style: {
-                                backgroundColor:
-                                  highlightedIndex === index
-                                    ? "lightgray"
-                                    : "white",
-                                fontWeight:
-                                  selectedItem === item ? "bold" : "normal"
-                              }
-                            })}
-                          >
-                            {item.value}
-                          </li>
-                        ))
-                    : null}
+                <ul className="autocomplete-dropdown-container">
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? "suggestion-item--active"
+                      : "suggestion-item";
+                    // inline style for demonstration purpose
+                    const style = suggestion.active
+                      ? { backgroundColor: "#fafafa", cursor: "pointer" }
+                      : { backgroundColor: "#ffffff", cursor: "pointer" };
+                    return (
+                      <li
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style
+                        })}
+                      >
+                        <span>{suggestion.description}</span>
+                      </li>
+                    );
+                  })}
                 </ul>
               </div>
             )}
-          </Downshift>
+          </PlacesAutocomplete>
         </SearchBox>
         <Button>search</Button>
       </Form>
@@ -111,4 +112,4 @@ class Search extends Component {
   }
 }
 
-export default Search;
+export default connect(null)(Search);

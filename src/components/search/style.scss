@@ -1,0 +1,28 @@
+.combobox {
+  position: relative;
+  ul {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    // border: 1px solid #dcdcdc;
+    // border-radius: 6px;
+    // overflow: hidden;
+    // opacity: 0;
+    border-bottom: honeydew;
+    border-left: honeydew;
+    border-right: honeydew;
+    border-top: 1px solid #e6e6e6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 0 0 2px 2px;
+    &.open {
+      opacity: 1;
+    }
+    li {
+      border-bottom: 1px solid #dcdcdc;
+      padding-left: 10px;
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
