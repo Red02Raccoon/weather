@@ -6,6 +6,7 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import Button from "../button"
 
 const Form = styled.form`
   display: flex;
@@ -14,14 +15,16 @@ const SearchBox = styled.div`
   min-width: 420px;
 `;
 
-const Button = styled.button`
-  background: transparent;
-  border-radius: 3px;
-  border: 2px solid palevioletred;
-  color: palevioletred;
-  margin-left: 10px;
-  padding: 0.25em 1em;
-  cursor: pointer;
+const Loader = styled.span`
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #fff;
+`;
+
+const InputContainer = styled.div`
+  position: relative;
 `;
 
 const Input = styled.input`
@@ -34,6 +37,12 @@ const Input = styled.input`
   background-color: #4b525c;
   color: #fff;
   outline: none;
+  transition: all 0.30s ease-in-out;
+  border: 1px solid transparent;
+  &:focus {
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+    border: 1px solid rgba(81, 203, 238, 1);
+  }
 `;
 
 class Search extends Component {
@@ -73,15 +82,18 @@ class Search extends Component {
               getSuggestionItemProps,
               loading
             }) => (
-              <div className="combobox">
+              <div className={suggestions.length ? "combobox open": "combobox"} >
+                <InputContainer>
                 <Input
                   {...getInputProps({
                     placeholder: "Search Places ...",
                     className: "location-search-input"
                   })}
                 />
-                <ul className="autocomplete-dropdown-container">
-                  {loading && <div>Loading...</div>}
+                {loading && <Loader>Loading...</Loader>}
+                </InputContainer>
+                <ul>
+                  
                   {suggestions.map(suggestion => {
                     const className = suggestion.active
                       ? "suggestion-item--active"
