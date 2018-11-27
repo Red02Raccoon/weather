@@ -79,7 +79,7 @@ const MainCardBlock = styled.div`
 
 class MainCard extends Component {
   render() {
-    console.log(this.props);
+    // console.log(this.props);
     return (
       <MainCardBlock bgImg={bg} mTop={this.props.mTop}>
         <MainCardContainer>
