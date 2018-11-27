@@ -11,6 +11,9 @@ class App extends Component {
           <MainCard mTop="65px" />
         </div>
         <Footer />
+        <div>some tag
+          
+        </div>
       </Fragment>
     );
   }
