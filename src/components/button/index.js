@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { string, func } from "prop-types";
+
 
 const Button = styled.button`
   background: transparent;

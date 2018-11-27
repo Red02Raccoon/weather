@@ -1,19 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import "./style.scss";
 import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
-import Button from "../button"
 
-const Form = styled.form`
-  display: flex;
-`;
-const SearchBox = styled.div`
-  min-width: 420px;
-`;
+const Form = styled.form``;
+const SearchBox = styled.div``;
 
 const Loader = styled.span`
   position: absolute;
@@ -37,7 +31,7 @@ const Input = styled.input`
   background-color: #4b525c;
   color: #fff;
   outline: none;
-  transition: all 0.30s ease-in-out;
+  transition: all 0.3s ease-in-out;
   border: 1px solid transparent;
   &:focus {
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
@@ -45,12 +39,47 @@ const Input = styled.input`
   }
 `;
 
+const Combobox = styled.div`
+  position: relative;
+  &.open {
+    ul {
+      opacity: 1;
+    }
+  }
+`;
+
+const SugestionsList = styled.ul`
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-bottom: honeydew;
+  border-left: honeydew;
+  border-right: honeydew;
+  border-top: 1px solid #e6e6e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 2px 2px;
+  opacity: 0;
+`;
+
+const SugestionItem = styled.li`
+  border-bottom: 1px solid #dcdcdc;
+  padding: 5px 15px;
+  cursor: pointer;
+  background-color: #fff;
+  &:hover {
+    background-color: #fafafa;
+  }
+  &:last-child {
+    border-bottom: none;
+  }
+`;
 class Search extends Component {
   state = { address: "" };
 
   handleSubmit = e => {
     e.preventDefault();
     console.log(this.state.value);
+    // perform an ajax call
   };
 
   handleChange = address => {
@@ -62,7 +91,7 @@ class Search extends Component {
     this.setState({ address });
     geocodeByAddress(address)
       .then(results => getLatLng(results[0]))
-      .then(latLng => console.log("Success", latLng))
+      .then(latLng => console.log("Success", latLng)) // perform an ajax call
       .catch(error => console.error("Error", error));
   };
 
@@ -82,43 +111,32 @@ class Search extends Component {
               getSuggestionItemProps,
               loading
             }) => (
-              <div className={suggestions.length ? "combobox open": "combobox"} >
+              <Combobox
+                className={suggestions.length ? "combobox open" : "combobox"}
+              >
                 <InputContainer>
-                <Input
-                  {...getInputProps({
-                    placeholder: "Search Places ...",
-                    className: "location-search-input"
-                  })}
-                />
-                {loading && <Loader>Loading...</Loader>}
+                  <Input
+                    {...getInputProps({
+                      placeholder: "Search Places ...",
+                      className: "location-search-input"
+                    })}
+                    title="search box"
+                  />
+                  {loading && <Loader>Loading...</Loader>}
                 </InputContainer>
-                <ul>
-                  
+                <SugestionsList>
                   {suggestions.map(suggestion => {
-                    const className = suggestion.active
-                      ? "suggestion-item--active"
-                      : "suggestion-item";
-                    // inline style for demonstration purpose
-                    const style = suggestion.active
-                      ? { backgroundColor: "#fafafa", cursor: "pointer" }
-                      : { backgroundColor: "#ffffff", cursor: "pointer" };
                     return (
-                      <li
-                        {...getSuggestionItemProps(suggestion, {
-                          className,
-                          style
-                        })}
-                      >
+                      <SugestionItem {...getSuggestionItemProps(suggestion)}>
                         <span>{suggestion.description}</span>
-                      </li>
+                      </SugestionItem>
                     );
                   })}
-                </ul>
-              </div>
+                </SugestionsList>
+              </Combobox>
             )}
           </PlacesAutocomplete>
         </SearchBox>
-        <Button>search</Button>
       </Form>
     );
   }

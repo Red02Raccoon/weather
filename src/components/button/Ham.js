@@ -37,13 +37,14 @@ const StyledBtn = styled(Button)`
   }
 `;
 
-const Ham = ({ onClick, width, height, className }) => {
+const Ham = ({ onClick, width, height, className, title }) => {
   return (
     <StyledBtn
       onClick={onClick}
       width={width}
       height={height}
       className={className}
+      title={title}
     >
       <span />
       <span />

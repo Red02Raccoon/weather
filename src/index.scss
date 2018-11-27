@@ -4,6 +4,8 @@
 
 body {
   font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: #000;
   margin: 0;
   padding: 0;
@@ -18,23 +20,4 @@ ul {
 ul {
   margin: 0;
   padding: 0;
-}
-.container {
-  max-width: 1150px;
-  padding: 0 15px;
-  margin: 0 auto;
-}
-
-.header {
-  height: 66px;
-  background-color: #272e38;
-  .container {
-    height: 100%;
-  }
-  &-content {
-    height: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
