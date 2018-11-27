@@ -73,6 +73,7 @@ const SugestionItem = styled.li`
     border-bottom: none;
   }
 `;
+
 class Search extends Component {
   state = { address: "" };
 
