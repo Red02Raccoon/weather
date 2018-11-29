@@ -5,17 +5,10 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+import Preloader from "../preloader";
 
 const Form = styled.form``;
 const SearchBox = styled.div``;
-
-const Loader = styled.span`
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #fff;
-`;
 
 const InputContainer = styled.div`
   position: relative;
@@ -26,6 +19,7 @@ const Input = styled.input`
   width: 100%;
   font-size: 18px;
   padding: 8px 16px;
+  padding-right: 40px;
   border-radius: 6px;
   border: none;
   background-color: #4b525c;
@@ -65,10 +59,8 @@ const SugestionItem = styled.li`
   border-bottom: 1px solid #dcdcdc;
   padding: 5px 15px;
   cursor: pointer;
-  background-color: #fff;
-  &:hover {
-    background-color: #fafafa;
-  }
+  background-color: ${p => (p.active ? "#ececec" : "#fff")};
+
   &:last-child {
     border-bottom: none;
   }
@@ -123,12 +115,15 @@ class Search extends Component {
                     })}
                     title="search box"
                   />
-                  {loading && <Loader>Loading...</Loader>}
+                  {loading && <Preloader position="rc" right="16px" />}
                 </InputContainer>
                 <SugestionsList>
                   {suggestions.map(suggestion => {
                     return (
-                      <SugestionItem {...getSuggestionItemProps(suggestion)}>
+                      <SugestionItem
+                        {...getSuggestionItemProps(suggestion)}
+                        active={suggestion.active && "active"}
+                      >
                         <span>{suggestion.description}</span>
                       </SugestionItem>
                     );
