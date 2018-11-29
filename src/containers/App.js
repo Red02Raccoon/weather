@@ -13,6 +13,9 @@ class App extends Component {
 					<Forecast mTop="35px" mB="55px"/>
         </div>
         <Footer />
+        <div>some tag
+          
+        </div>
       </Fragment>
     );
   }
