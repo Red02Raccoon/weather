@@ -66,7 +66,7 @@ class CurrentLocationBtn extends Component {
 		}
 
 		this.props.weatherFetch(location);
-		this.props.forecastDaysFetch(location)
+		this.props.forecastDaysFetch(location);
   };
 
   render() {

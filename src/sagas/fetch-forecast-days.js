@@ -1,7 +1,7 @@
 import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 
-import { filterInfoForMainCard } from '../utils';
+import { filterInfoForecastDays } from '../utils';
 import { actionTypes } from "../actions/forecast-days";
 import { setData as forecastSetData } from "../actions/forecast-days";
 
@@ -24,9 +24,9 @@ function getApiData(payload) {
 function* fetchSaga({ payload }) {
   try {
 		const response = yield call(getApiData, payload);
-    // const mainCard = filterInfoForMainCard(response);
+    const forecastDays = filterInfoForecastDays(response);
 
-    yield put(forecastSetData(response));
+    yield put(forecastSetData(forecastDays));
   } catch (e) {
     console.log("error", e);
   }

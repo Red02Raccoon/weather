@@ -1,7 +1,11 @@
 import React, {Component} from "react";
 import { connect } from "react-redux";
 import Slider from "react-slick";
+import { isEmpty } from "lodash";
 import styled from "styled-components";
+
+import { fetchRequest } from "../../actions/forecast-days";
+
 
 import { PageTitle } from '../layout/Titles.jsx';
 import Card from './Card';
@@ -11,6 +15,8 @@ import RainIcon from '../../images/icons/weather/rain.svg';
 import SunCloudIcon from '../../images/icons/weather/sun-cloud.svg';
 import SunIcon from '../../images/icons/weather/sun.svg';
 // import { connect } from "tls";
+
+
 
 
 const ForecastSection = styled.div`
@@ -220,34 +226,47 @@ class Forecast extends Component {
 		arrows: true
 	}
 
+	componentDidMount() {
+		this.props.fetchRequest(this.props.defaultCoords)
+	}
+
 	render() {
-		const slides = data.map((item, index) => {
+		const forecastDays = this.props.forecastDays.data;
+		console.log(forecastDays)
+
+		if (forecastDays && !isEmpty(forecastDays)) {
+
+
+			const slides = forecastDays.map((item, index) => {
+				return (
+					<Card info={item} key={index}/>
+				)
+			});
+	
+	
 			return (
-				<Card info={item} key={index}/>
+				<ForecastSection mTop={this.props.mTop} mB={this.props.mB}>
+					<div className="container">
+						<SliderBlock>
+							<PageTitle>Day forecast</PageTitle>
+							<Slider {...this.settings} className="forecast-slider weather-slider">
+								{slides}
+							</Slider>
+						</SliderBlock>
+					</div>
+				</ForecastSection>
 			)
-		})
+		}
 
-		// console.log(this.props)
-
-		return (
-			<ForecastSection mTop={this.props.mTop} mB={this.props.mB}>
-				<div className="container">
-					<SliderBlock>
-						<PageTitle>Day forecast</PageTitle>
-						<Slider {...this.settings} className="forecast-slider weather-slider">
-							{slides}
-						</Slider>
-					</SliderBlock>
-				</div>
-			</ForecastSection>
-		)
+		return null
 	}
 }
 
-function mapStateToProps({forecast_days}) {
-	return forecast_days
+function mapStateToProps({forecastDays}) {
+	return {forecastDays}
 }
 
 export default connect(
-	null
+	mapStateToProps,
+	{fetchRequest}
 )(Forecast);

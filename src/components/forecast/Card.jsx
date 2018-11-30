@@ -1,6 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
+import {getIcon} from "../../utils";
+
+import { WiDaySunny, WiDayCloudy, WiCloud, WiCloudy, WiDayShowers,  WiHail, WiDayThunderstorm, WiSnow, WiNightClear, WiNightAltCloudy ,WiNightAltCloudyHigh, WiNightAltRain} from "weather-icons-react";
+
+
+
 const Card = styled.div`
   width: 310px;
   padding: 20px;
@@ -44,6 +50,7 @@ const FeatureImg = styled.img`
 
 const FeatureName = styled.div`
 	font-size: 18px;
+	margin-left: 15px;
 `;
 
 const Details = styled.div`
@@ -59,28 +66,57 @@ const Detail = styled.div`
 `;
 const Time = styled.div`
 	margin: 8px 0;
+	&:first-letter {
+    text-transform: uppercase;
+	}
 `;
 const TempSmall = styled.div`
  color: #9a9a9a;
 `;
 
 export default ({info}) => {
+	function getIcon(type) {
+		var icon;
+	
+		if (type === "01d") icon = WiDaySunny
+		if (type === "02d") icon = WiDayCloudy;
+		if (type === "03d") icon = WiCloud;
+		if (type === "04d" || type === "04n") icon = WiCloudy;
+		if (type === "09d" || type === "09n") icon = WiDayShowers;
+		if (type === "10d") icon = WiHail;
+		if (type === "11d" || type === "11n") icon = WiDayThunderstorm;
+		if (type === "13d" || type === "13n") icon = WiSnow;
+	
+		if (type === "01n") icon = WiNightClear
+		if (type === "02n") icon = WiNightAltCloudy;
+		if (type === "03n") icon = WiNightAltCloudyHigh;
+	
+		if (type === "10n") icon = WiNightAltRain;
+	
+		return icon
+	}
+
+	const icon = getIcon(info.iconCode)
   return <Card>
 		<Title>
-				<Day>{info.day}</Day>
-				<Temp>{info.temp}</Temp>
+				<Day>{info.date.dayName}</Day>
+				<Temp>{info.mainTemp}</Temp>
 		</Title>
-		<Date>{info.date}</Date>
+		<Date>{info.date.month}</Date>
 		<Feature>
-			<FeatureImg src={info.icon} widthIcon="40px" heightIcon="40px" mR="20px"/>
-			<FeatureName>{info.feature}</FeatureName>
+			{/* <FeatureImg src={info.icon} widthIcon="40px" heightIcon="40px" mR="20px"/> */}
+			{icon({size: 40, color: "#7E9ED2"})}
+			<FeatureName>{info.weatherType}</FeatureName>
 		</Feature>
 		<Details>
 		{
-			info.timesOfDay.map((item, index)=>{
+			info.timeOfDayInfo.map((item, index)=>{
+				const icon = getIcon(item.iconCode)
 				return (
 					<Detail key={index}>
-						<FeatureImg src={item.icon}/>
+						{/* <FeatureImg src={item.icon}/> */}
+						{icon({size: 24, color: "#7E9ED2"})}
+
 						<Time>{item.time}</Time>
 						<TempSmall>{item.temp}</TempSmall>
 					</Detail>

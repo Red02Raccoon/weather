@@ -45,13 +45,8 @@ const MainCardBlock = styled.div`
 `;
 
 class MainCard extends Component {
-	defaultCoords = {
-		lat: 51.5073,
-		lon: -0.1277
-	}
-
 	componentDidMount() {
-		this.props.fetchRequest(this.defaultCoords)
+		this.props.fetchRequest(this.props.defaultCoords)
 	}
 
   render() {

@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
+    "lodash": "^4.17.11",
     "pure-react-carousel": "^1.17.0",
     "react": "^16.6.1",
     "react-dom": "^16.6.1",
@@ -17,8 +18,8 @@
     "redux": "^4.0.1",
     "redux-saga": "^0.16.2",
     "slick-carousel": "^1.8.1",
-		"styled-components": "^4.0.3",
-		"lodash": "^4.17.11"
+    "styled-components": "^4.0.3",
+    "weather-icons-react": "^1.2.0"
   },
   "devDependencies": {
     "node-sass": "^4.10.0",
