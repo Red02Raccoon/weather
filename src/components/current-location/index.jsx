@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
 
-import { fetchRequest } from "../../actions/weather-data";
+import { fetchRequest as weatherFetch } from "../../actions/weather-data";
+import { fetchRequest as forecastDaysFetch } from "../../actions/forecast-days";
 
 const CurrentLocBtn = styled.button`
   color: #fff;
@@ -59,10 +60,13 @@ class CurrentLocationBtn extends Component {
   };
 
   getPosition = position => {
-    const lat = position.coords.latitude;
-    const lon = position.coords.longitude;
+		const location = {
+			lat: position.coords.latitude,
+			lon: position.coords.longitude
+		}
 
-    this.props.fetchRequest({ lat, lon });
+		this.props.weatherFetch(location);
+		this.props.forecastDaysFetch(location)
   };
 
   render() {
@@ -77,5 +81,5 @@ class CurrentLocationBtn extends Component {
 
 export default connect(
   null,
-  { fetchRequest }
+  { weatherFetch, forecastDaysFetch }
 )(CurrentLocationBtn);

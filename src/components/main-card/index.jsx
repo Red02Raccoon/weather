@@ -1,47 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { isEmpty } from "lodash";
 import styled from "styled-components";
+
+import { fetchRequest } from "../../actions/weather-data";
 
 import bg from "../../images/bg.jpg";
 import MoreInfoBlock from "./MoreInfoBlock";
 import MainInfoBlock from "./MainInfoBlock";
 
-const data = {
-  moreInfo: [
-    {
-      title: "Local Time",
-      value: "11:20 AM"
-    },
-    {
-      title: "Feels like",
-      value: "10C"
-    },
-    {
-      title: "Dew point",
-      value: "3C"
-    },
-    {
-      title: "Humidity",
-      value: "55%"
-    },
-    {
-      title: "Wind speed",
-      value: "11 kmph NW"
-    },
-    {
-      title: "Pressure",
-      value: "1020 mbar"
-    }
-  ],
-  mainInfo: {
-    day: "Monday",
-    month: "November",
-    year: "2018",
-    weatherType: "Partly cloudy",
-    temperature: "12C",
-    location: "Dnepr, Ukraine"
-  }
-};
 
 const MainCardContainer = styled.div`
   max-width: 1120px;
@@ -78,23 +45,37 @@ const MainCardBlock = styled.div`
 `;
 
 class MainCard extends Component {
+	defaultCoords = {
+		lat: 51.5073,
+		lon: -0.1277
+	}
+
+	componentDidMount() {
+		this.props.fetchRequest(this.defaultCoords)
+	}
+
   render() {
-    // console.log(this.props);
-    return (
-      <MainCardBlock bgImg={bg} mTop={this.props.mTop}>
-        <MainCardContainer>
-          <MainInfoBlock data={data.mainInfo} />
-          <MoreInfoBlock data={data.moreInfo} />
-        </MainCardContainer>
-      </MainCardBlock>
-    );
+		const weatherInfo = this.props.weather;
+
+		if (!isEmpty(weatherInfo)) {
+			return (
+				<MainCardBlock bgImg={bg} mTop={this.props.mTop}>
+					<MainCardContainer>
+						<MainInfoBlock data={weatherInfo.mainInfo} />
+						<MoreInfoBlock data={weatherInfo.moreInfo} />
+					</MainCardContainer>
+				</MainCardBlock>
+			);
+		}
+		
+		return null
   }
 }
 
 function mapStateToProps(state) {
   return {
-    mainCard: state.mainCard.data
+    weather: state.weather.data
   };
 }
 
-export default connect(mapStateToProps)(MainCard);
+export default connect(mapStateToProps, {fetchRequest})(MainCard);

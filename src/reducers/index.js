@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import weatherData from "./weather-data";
-import mainCard from "./main-card";
+import weather from "./weather-data";
+import forecastDays from "./forecast-days";
 
 export default combineReducers({
-  weatherData,
-  mainCard
+	weather,
+	forecastDays
 });

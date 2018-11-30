@@ -2,12 +2,12 @@ import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 
 import { filterInfoForMainCard } from '../utils';
-import { actionTypes } from "../actions/weather-data";
-import { setData as weatherSetData } from "../actions/weather-data";
+import { actionTypes } from "../actions/forecast-days";
+import { setData as forecastSetData } from "../actions/forecast-days";
 
 function getApiData(payload) {
   const API_KEY = "0b6c1ff5605b99b94aa899b8af970c05";
-  const ROOT_URL = `http://api.openweathermap.org/data/2.5/weather`;
+  const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast`;
 
   let url = `${ROOT_URL}?lat=${payload.lat}&lon=${payload.lon}&units=metric&appid=${API_KEY}`;
 
@@ -24,9 +24,9 @@ function getApiData(payload) {
 function* fetchSaga({ payload }) {
   try {
 		const response = yield call(getApiData, payload);
-    const mainCard = filterInfoForMainCard(response);
+    // const mainCard = filterInfoForMainCard(response);
 
-    yield put(weatherSetData(mainCard));
+    yield put(forecastSetData(response));
   } catch (e) {
     console.log("error", e);
   }

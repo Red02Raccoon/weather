@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import styled from "styled-components";
 import MediaQuery from "react-responsive";
+import styled from "styled-components";
 
 const MoreInfoBlockContainer = styled.div`
   position: relative;
@@ -28,7 +28,7 @@ const MoreInfoBlockInner = styled.div`
   padding: 30px 20px 30px 20px;
   min-height: 100%;
   @media (min-width: 1121px) {
-    padding: 30px 20px 30px 90px;
+    padding: 30px 20px 30px 70px;
     &:after {
       content: "";
       display: inline-block;
@@ -76,12 +76,12 @@ const MoreInfoItem = styled.li`
   .value {
     font-weight: 500;
   }
-  /* @media (max-width: 575px) {
+  @media (max-width: 575px) {
     &:not(:last-child) {
-      padding: 0 10px 20px;
-      margin-bottom: 20px;
+      padding: 0 10px 25px;
+      margin-bottom: 25px;
     }
-  } */
+  } 
 `;
 
 const ArrowCircleButton = styled.button`
@@ -149,7 +149,8 @@ class MoreInfoBlock extends Component {
         isOpen: !prevState.isOpen
       };
     });
-  };
+	};
+	
   render() {
     return (
       <MoreInfoBlockContainer className={this.state.isOpen ? "open" : ""}>

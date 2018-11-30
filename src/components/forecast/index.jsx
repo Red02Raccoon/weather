@@ -1,4 +1,6 @@
-import React from "react";
+import React, {Component} from "react";
+import { connect } from "react-redux";
+import Slider from "react-slick";
 import styled from "styled-components";
 
 import { PageTitle } from '../layout/Titles.jsx';
@@ -8,17 +10,60 @@ import CloudIcon from '../../images/icons/weather/cloud.svg';
 import RainIcon from '../../images/icons/weather/rain.svg';
 import SunCloudIcon from '../../images/icons/weather/sun-cloud.svg';
 import SunIcon from '../../images/icons/weather/sun.svg';
+// import { connect } from "tls";
+
 
 const ForecastSection = styled.div`
   margin-top: ${props => props.mTop};
   margin-bottom: ${props => props.mB};
 `;
 
-const Slider = styled.div`
-  display: flex;
+const SliderBlock = styled.div`
+	position: relative;
+	.forecast-slider {
+		position: static;
+		.slick-slide {
+			&:not(:last-child) {
+				margin-right: 20px;
+			}
+		}
+		.slick-arrow {
+			top: 2px;
+		}
+	}
 `;
 
+
 const data = [
+	{
+		day: "monday",
+		temp: "23°C",
+		date: "November 5th",
+		icon: SunCloudIcon,
+		feature: 'Cloud',
+		timesOfDay: [
+			{
+				icon: CloudIcon,
+				time: 'Morning',
+				temp: '8°C'
+			},
+			{
+				icon: SunIcon,
+				time: 'Day',
+				temp: '10°C'
+			},
+			{
+				icon: SunCloudIcon,
+				time: 'Evening',
+				temp: '10°C'
+			},
+			{
+				icon: RainIcon,
+				time: 'Night',
+				temp: '5°C'
+			}
+		]
+	},
 	{
 		day: "tuesday",
 		temp: "8°C",
@@ -166,18 +211,43 @@ const data = [
 	}
 ];
 
-export default (props) => {
-	const slides = data.map((item, index) => {
+class Forecast extends Component {
+	settings = {
+		variableWidth: true,
+		infinite: false,
+		speed: 500,
+		slidesToScroll: 1,
+		arrows: true
+	}
+
+	render() {
+		const slides = data.map((item, index) => {
+			return (
+				<Card info={item} key={index}/>
+			)
+		})
+
+		// console.log(this.props)
+
 		return (
-			<Card info={item} key={index}/>
+			<ForecastSection mTop={this.props.mTop} mB={this.props.mB}>
+				<div className="container">
+					<SliderBlock>
+						<PageTitle>Day forecast</PageTitle>
+						<Slider {...this.settings} className="forecast-slider weather-slider">
+							{slides}
+						</Slider>
+					</SliderBlock>
+				</div>
+			</ForecastSection>
 		)
-	})
-	return (
-		<ForecastSection mTop={props.mTop} mB={props.mB}>
-			<div className="container">
-				<PageTitle>Day forecast</PageTitle>
-				<Slider>{slides}</Slider>
-			</div>
-		</ForecastSection>
-	)
+	}
 }
+
+function mapStateToProps({forecast_days}) {
+	return forecast_days
+}
+
+export default connect(
+	null
+)(Forecast);

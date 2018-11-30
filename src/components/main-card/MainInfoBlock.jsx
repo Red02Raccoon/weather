@@ -12,12 +12,16 @@ const MainCardInfo = styled.div`
 
 const MainCardInfoDate = styled.div`
   font-size: 18px;
+	line-height: 1.3em;
   font-weight: 500;
 `;
 
 const MainCardInfoType = styled.div`
   font-size: 30px;
   margin-top: 25px;
+	&:first-letter {
+    text-transform: uppercase;
+	}
 `;
 
 const MainCardInfoTemp = styled.div`
@@ -35,11 +39,11 @@ export default ({ data }) => {
   return (
     <MainCardInfo>
       <MainCardInfoDate>
-        {`${data.day}`} <br /> {`${data.month} ${data.year}`}
+        {`${data.date.dayName}`} <br /> {`${data.date.dayNumber} ${data.date.month} ${data.date.year}`}
       </MainCardInfoDate>
       <MainCardInfoType>{data.weatherType}</MainCardInfoType>
-      <MainCardInfoTemp>{data.temperature}</MainCardInfoTemp>
-      <MainCardInfoLocation>{data.location}</MainCardInfoLocation>
+      <MainCardInfoTemp>{data.temp}</MainCardInfoTemp>
+      <MainCardInfoLocation>{`${data.city}, ${data.country}`}</MainCardInfoLocation>
     </MainCardInfo>
   );
 };
