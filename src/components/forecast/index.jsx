@@ -25,10 +25,7 @@ const SliderBlock = styled.div`
         margin-right: 20px;
       }
       @media (max-width: 380px) {
-        width: 280px;
-        &:not(:last-child) {
-          margin-right: 10px;
-        }
+        width: 275px;
       }
     }
     .slick-arrow {
