@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
+import { Container } from "../styled";
 import Logo from "../logo";
-import CurrentLocation from "../current-location";
 
 const Footer = styled.footer`
   background-color: #272e38;
@@ -19,12 +19,11 @@ const FooterInner = styled.div`
 export default () => {
   return (
     <Footer>
-      <div className="container">
+      <Container>
         <FooterInner>
           <Logo />
-          <CurrentLocation />
         </FooterInner>
-      </div>
+      </Container>
     </Footer>
   );
 };

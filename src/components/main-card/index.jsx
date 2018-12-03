@@ -9,7 +9,6 @@ import bg from "../../images/bg.jpg";
 import MoreInfoBlock from "./MoreInfoBlock";
 import MainInfoBlock from "./MainInfoBlock";
 
-
 const MainCardContainer = styled.div`
   max-width: 1120px;
   width: 100%;
@@ -19,9 +18,6 @@ const MainCardContainer = styled.div`
   min-height: 455px;
   position: relative;
   z-index: 1;
-  @media (max-width: 1120px) {
-    padding: 0 0 0 15px;
-  }
 `;
 
 const MainCardBlock = styled.div`
@@ -45,32 +41,36 @@ const MainCardBlock = styled.div`
 `;
 
 class MainCard extends Component {
-	componentDidMount() {
-		this.props.fetchRequest(this.props.defaultCoords)
-	}
+  componentDidMount() {
+    this.props.fetchRequest(this.props.location);
+  }
 
   render() {
-		const weatherInfo = this.props.weather;
+    const weatherInfo = this.props.weather;
 
-		if (!isEmpty(weatherInfo)) {
-			return (
-				<MainCardBlock bgImg={bg} mTop={this.props.mTop}>
-					<MainCardContainer>
-						<MainInfoBlock data={weatherInfo.mainInfo} />
-						<MoreInfoBlock data={weatherInfo.moreInfo} />
-					</MainCardContainer>
-				</MainCardBlock>
-			);
-		}
-		
-		return null
+    if (!isEmpty(weatherInfo)) {
+      return (
+        <MainCardBlock bgImg={bg} mTop={this.props.mTop}>
+          <MainCardContainer>
+            <MainInfoBlock data={weatherInfo.mainInfo} />
+            <MoreInfoBlock data={weatherInfo.moreInfo} />
+          </MainCardContainer>
+        </MainCardBlock>
+      );
+    }
+
+    return null;
   }
 }
 
 function mapStateToProps(state) {
   return {
-    weather: state.weather.data
+    weather: state.weather.data,
+    location: state.location.data
   };
 }
 
-export default connect(mapStateToProps, {fetchRequest})(MainCard);
+export default connect(
+  mapStateToProps,
+  { fetchRequest }
+)(MainCard);

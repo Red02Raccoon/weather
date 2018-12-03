@@ -9,7 +9,7 @@ const MoreInfoBlockContainer = styled.div`
   @media (min-width: 1121px) {
     width: 35%;
   }
-  @media (max-width: 575px) {
+  @media (max-width: 750px) {
     position: absolute;
     transform: translate(100%, 0);
     top: 0;
@@ -43,7 +43,7 @@ const MoreInfoBlockInner = styled.div`
   @media (max-width: 1120px) {
     background-color: rgba(75, 82, 92, 0.5);
   }
-  @media (max-width: 575px) {
+  @media (max-width: 750px) {
     padding: 35px 40px;
     transition: background-color 0.3s;
     max-height: 100%;
@@ -76,12 +76,12 @@ const MoreInfoItem = styled.li`
   .value {
     font-weight: 500;
   }
-  @media (max-width: 575px) {
+  @media (max-width: 750px) {
     &:not(:last-child) {
       padding: 0 10px 25px;
       margin-bottom: 25px;
     }
-  } 
+  }
 `;
 
 const ArrowCircleButton = styled.button`
@@ -149,12 +149,12 @@ class MoreInfoBlock extends Component {
         isOpen: !prevState.isOpen
       };
     });
-	};
-	
+  };
+
   render() {
     return (
       <MoreInfoBlockContainer className={this.state.isOpen ? "open" : ""}>
-        <MediaQuery maxWidth={575}>
+        <MediaQuery maxWidth={750}>
           <ArrowCircleButton
             onClick={this.handleClick}
             className={this.state.isOpen ? "open" : ""}

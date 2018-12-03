@@ -5,13 +5,14 @@ import logo from "../../images/icons/logo.svg";
 
 const Logo = styled.div`
   max-width: 100px;
+  cursor: pointer;
 `;
 
 const LogoImg = styled.img``;
 
 export default () => {
   return (
-    <Logo>
+    <Logo title="logo">
       <LogoImg src={logo} />
     </Logo>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { string } from "prop-types";
 import styled, { css } from "styled-components";
+
 import { ReactComponent as SpinnerSvg } from "../../images/icons/preloader.svg";
 
 const Spinner = styled.div`

@@ -4,9 +4,9 @@ import styled from "styled-components";
 import { Container } from "../styled";
 import Search from "../search";
 import Ham from "../button/Ham";
+
+import RefreshInfo from "../refresh-info";
 import CurrentLocation from "../current-location";
-import IconBtn from "../button/IconBtn";
-import { ReactComponent as Placeholder } from "../../images/icons/placeholder.svg";
 
 const Header = styled.header`
   height: 66px;
@@ -15,6 +15,7 @@ const Header = styled.header`
 
 const Content = styled.div`
   height: 100%;
+  padding: 10px 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,6 +33,11 @@ const Middle = styled.div`
 `;
 const End = styled.div``;
 
+const CurrentLocationBtn = styled.div`
+  margin-right: 15px;
+  display: inline-block;
+`;
+
 const HeaderComponent = () => {
   return (
     <Header>
@@ -44,10 +50,10 @@ const HeaderComponent = () => {
             <Search />
           </Middle>
           <End>
-            {/* <IconBtn title="change location">
-              <Placeholder />
-            </IconBtn> */}
-						<CurrentLocation/>
+            <CurrentLocationBtn>
+              <CurrentLocation />
+            </CurrentLocationBtn>
+            <RefreshInfo />
           </End>
         </Content>
       </Container>
