@@ -4,7 +4,7 @@ import { Container } from "../styled";
 import Search from "../search";
 import Ham from "../button/Ham";
 import IconBtn from "../button/IconBtn";
-import { ReactComponent as Placeholder } from "../../images/icons/placeholder.svg";
+// import Placeholder from "/static/img/icons/placeholder.svg";
 
 const Header = styled.header`
   height: 66px;
@@ -43,7 +43,8 @@ const HeaderComponent = () => {
           </Middle>
           <End>
             <IconBtn title="change location">
-              <Placeholder />
+              {/* <Placeholder /> */}
+              button
             </IconBtn>
           </End>
         </Content>

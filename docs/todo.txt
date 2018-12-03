@@ -1,2 +1,5 @@
 
 тесты snapshots tests
+
+.env
+https://github.com/zeit/next.js/blob/canary/examples/with-dotenv/pages/index.js

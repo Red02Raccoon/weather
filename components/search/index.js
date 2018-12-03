@@ -138,4 +138,5 @@ class Search extends Component {
   }
 }
 
-export default connect(null)(Search);
+// export default connect(null)(Search);
+export default Search;
