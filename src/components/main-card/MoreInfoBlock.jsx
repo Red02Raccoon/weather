@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
 
+import IconBtn from "../button/IconBtn";
+import RefreshInfo from "../refresh-info";
+import { ReactComponent as ArrowIcon } from "../../images/icons/arrow.svg";
+
 const MoreInfoBlockContainer = styled.div`
   position: relative;
 	width: 50%;
@@ -78,21 +82,24 @@ const MoreInfoItem = styled.li`
   }
   @media (max-width: 750px) {
     &:not(:last-child) {
-      padding: 0 10px 25px;
-      margin-bottom: 25px;
+      padding: 0 10px 20px;
+      margin-bottom: 20px;
     }
   }
 `;
 
-const ArrowCircleButton = styled.button`
-  width: 45px;
-  height: 45px;
+const ArrowCircleButton = styled(IconBtn)`
   background-color: #fff;
   border-radius: 50%;
   z-index: 1;
   position: absolute;
   top: 50%;
   left: 0;
+  svg {
+    path {
+      fill: rgba(75, 82, 92, 0.9);
+    }
+  }
   transform: translate(0, -50%);
   transition: all 0.3s;
   &:hover {
@@ -104,39 +111,14 @@ const ArrowCircleButton = styled.button`
 `;
 
 const ArrowIconWrap = styled.div`
+  transform: translate(-50%, -50%);
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   width: 10px;
   height: 20px;
   margin-left: -2px;
-  svg {
-    width: 100%;
-    height: 100%;
-    path {
-      fill: rgba(75, 82, 92, 0.9);
-    }
-  }
 `;
-
-const arrowIcon = (
-  <svg
-    version="1.1"
-    id="Layer_1"
-    xmlns="http://www.w3.org/2000/svg"
-    x="0px"
-    y="0px"
-    width="9.7px"
-    height="18px"
-    viewBox="0 0 9.7 18"
-  >
-    <path
-      d="M9.7,17.3c0,0.2-0.1,0.4-0.2,0.5c-0.3,0.3-0.8,0.3-1.1,0L0.2,9.5c-0.3-0.3-0.3-0.8,0-1.1l8.3-8.3c0.3-0.3,0.8-0.3,1.1,0
-	s0.3,0.8,0,1.1L1.8,9l7.7,7.7C9.7,16.9,9.7,17.1,9.7,17.3z"
-    />
-  </svg>
-);
 
 class MoreInfoBlock extends Component {
   state = {
@@ -156,10 +138,15 @@ class MoreInfoBlock extends Component {
       <MoreInfoBlockContainer className={this.state.isOpen ? "open" : ""}>
         <MediaQuery maxWidth={750}>
           <ArrowCircleButton
+            width="45px"
+            height="45px"
+            title="open details"
             onClick={this.handleClick}
             className={this.state.isOpen ? "open" : ""}
           >
-            <ArrowIconWrap>{arrowIcon}</ArrowIconWrap>
+            <ArrowIconWrap>
+              <ArrowIcon />
+            </ArrowIconWrap>
           </ArrowCircleButton>
         </MediaQuery>
 
@@ -173,6 +160,14 @@ class MoreInfoBlock extends Component {
                 </MoreInfoItem>
               );
             })}
+            <MediaQuery maxWidth={750}>
+              <MoreInfoItem>
+                <span>Refresh info</span>
+                <span className="value">
+                  <RefreshInfo />
+                </span>
+              </MoreInfoItem>
+            </MediaQuery>
           </MoreInfoList>
         </MoreInfoBlockInner>
       </MoreInfoBlockContainer>

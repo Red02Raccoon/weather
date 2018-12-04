@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 import { fetchRequest } from "../../actions/weather-data";
 
-import bg from "../../images/bg.jpg";
 import MoreInfoBlock from "./MoreInfoBlock";
 import MainInfoBlock from "./MainInfoBlock";
 
@@ -50,7 +49,7 @@ class MainCard extends Component {
 
     if (!isEmpty(weatherInfo)) {
       return (
-        <MainCardBlock bgImg={bg} mTop={this.props.mTop}>
+        <MainCardBlock bgImg={weatherInfo.mainImg} mTop={this.props.mTop}>
           <MainCardContainer>
             <MainInfoBlock data={weatherInfo.mainInfo} />
             <MoreInfoBlock data={weatherInfo.moreInfo} />

@@ -1,4 +1,5 @@
 import React from "react";
+import MediaQuery from "react-responsive";
 import styled from "styled-components";
 
 import { Container } from "../styled";
@@ -34,8 +35,10 @@ const Middle = styled.div`
 const End = styled.div``;
 
 const CurrentLocationBtn = styled.div`
-  margin-right: 15px;
   display: inline-block;
+  @media (min-width: 751px) {
+    margin-right: 15px;
+  }
 `;
 
 const HeaderComponent = () => {
@@ -53,7 +56,9 @@ const HeaderComponent = () => {
             <CurrentLocationBtn>
               <CurrentLocation />
             </CurrentLocationBtn>
-            <RefreshInfo />
+            <MediaQuery minWidth={751}>
+              <RefreshInfo />
+            </MediaQuery>
           </End>
         </Content>
       </Container>

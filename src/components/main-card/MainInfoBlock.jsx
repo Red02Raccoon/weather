@@ -10,7 +10,7 @@ const MainCardInfo = styled.div`
   min-height: 100%;
   @media (max-width: 1150px) {
     max-width: 50%;
-    padding: 40px 10px 40px 15px;
+    padding: 30px 10px 30px 15px;
   }
   @media (max-width: 750px) {
     max-width: none;
@@ -60,7 +60,7 @@ export default ({ data }) => {
       </MainCardInfoDate>
       <MainCardInfoType>{data.weatherType}</MainCardInfoType>
       <MainCardInfoTemp>{data.temp}</MainCardInfoTemp>
-      <MainCardInfoLocation>{`${data.city}, ${
+      <MainCardInfoLocation>{`${data.city} ${
         data.country
       }`}</MainCardInfoLocation>
     </MainCardInfo>

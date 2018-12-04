@@ -1,3 +1,5 @@
+import getMainImg from "./getMainImg";
+
 export function debounce(func, delay) {
   let timerId;
   return function(...args) {
@@ -70,13 +72,15 @@ export function getDayName(index) {
 
 // Data conversion from API.
 export function filterInfoForMainCard(data) {
+  console.log(data);
   return {
+    mainImg: getMainImg(data.weather[0].id),
     mainInfo: {
       date: getDateFromMs(data.dt * 1000),
       weatherType: data.weather[0].description,
       temp: `${Math.round(data.main.temp)}°C`,
-      city: data.name,
-      country: data.sys.country
+      city: data.name || "",
+      country: data.sys.country || ""
     },
     moreInfo: [
       {
