@@ -1,4 +1,5 @@
 import React from "react";
+import { object } from "prop-types";
 import styled from "styled-components";
 
 const Block = styled.div`
@@ -51,7 +52,7 @@ const Location = styled.div`
   font-size: 30px;
 `;
 
-export default ({ data }) => {
+const MainInfoBlock = ({ data }) => {
   return (
     <Block>
       <Date>
@@ -64,3 +65,9 @@ export default ({ data }) => {
     </Block>
   );
 };
+
+MainInfoBlock.propTypes = {
+  data: object
+};
+
+export default MainInfoBlock;

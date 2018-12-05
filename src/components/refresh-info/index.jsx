@@ -8,8 +8,9 @@ import IconBtn from "../button/IconBtn";
 
 class CurrentLocationBtn extends Component {
   handleClick = () => {
-    this.props.weatherFetch(this.props.location);
-    this.props.forecastDaysFetch(this.props.location);
+    const { location, weatherFetch, forecastDaysFetch } = this.props;
+    weatherFetch(location);
+    forecastDaysFetch(location);
   };
 
   render() {
