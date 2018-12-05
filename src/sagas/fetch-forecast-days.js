@@ -2,13 +2,12 @@ import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 
 import { filterInfoForecastDays } from "../utils";
+import config from "../config";
 import { actionTypes } from "../actions/forecast-days";
 import { setData as forecastSetData } from "../actions/forecast-days";
 
 function getApiData(payload) {
-  const ROOT_URL = `http://api.openweathermap.org/data/2.5/forecast`;
-
-  let url = `${ROOT_URL}?lat=${payload.lat}&lon=${
+  let url = `${config.forecast}?lat=${payload.lat}&lon=${
     payload.lng
   }&units=metric&appid=${process.env.REACT_APP_WEATHER_KEY}`;
 

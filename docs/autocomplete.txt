@@ -1,4 +1,0 @@
-
-hide api key
-key=AIzaSyCxcGpLJb4Ie1fCRjOTUgFNassTXGHf1WU
-

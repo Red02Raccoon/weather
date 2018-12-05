@@ -6,7 +6,7 @@ import IconBtn from "../button/IconBtn";
 import RefreshInfo from "../refresh-info";
 import { ReactComponent as ArrowIcon } from "../../images/icons/arrow.svg";
 
-const MoreInfoBlockContainer = styled.div`
+const Container = styled.div`
   position: relative;
 	width: 50%;
 	height: 100%;
@@ -28,7 +28,7 @@ const MoreInfoBlockContainer = styled.div`
   }
 `;
 
-const MoreInfoBlockInner = styled.div`
+const BlockInner = styled.div`
   padding: 30px 20px 30px 20px;
   min-height: 100%;
   @media (min-width: 1121px) {
@@ -61,14 +61,14 @@ const MoreInfoBlockInner = styled.div`
   }
 `;
 
-const MoreInfoList = styled.ul`
+const List = styled.ul`
   position: relative;
   z-index: 1;
   font-size: 16px;
   color: #fff;
 `;
 
-const MoreInfoItem = styled.li`
+const Item = styled.li`
   display: flex;
   justify-content: space-between;
   padding: 0 10px;
@@ -135,7 +135,7 @@ class MoreInfoBlock extends Component {
 
   render() {
     return (
-      <MoreInfoBlockContainer className={this.state.isOpen ? "open" : ""}>
+      <Container className={this.state.isOpen ? "open" : ""}>
         <MediaQuery maxWidth={750}>
           <ArrowCircleButton
             width="45px"
@@ -150,27 +150,27 @@ class MoreInfoBlock extends Component {
           </ArrowCircleButton>
         </MediaQuery>
 
-        <MoreInfoBlockInner className={this.state.isOpen ? "open" : ""}>
-          <MoreInfoList>
+        <BlockInner className={this.state.isOpen ? "open" : ""}>
+          <List>
             {this.props.data.map((item, index) => {
               return (
-                <MoreInfoItem key={index}>
+                <Item key={index}>
                   <span>{item.title}</span>
                   <span className="value">{item.value}</span>
-                </MoreInfoItem>
+                </Item>
               );
             })}
             <MediaQuery maxWidth={750}>
-              <MoreInfoItem>
+              <Item>
                 <span>Refresh info</span>
                 <span className="value">
                   <RefreshInfo />
                 </span>
-              </MoreInfoItem>
+              </Item>
             </MediaQuery>
-          </MoreInfoList>
-        </MoreInfoBlockInner>
-      </MoreInfoBlockContainer>
+          </List>
+        </BlockInner>
+      </Container>
     );
   }
 }

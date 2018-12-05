@@ -8,7 +8,7 @@ import { fetchRequest } from "../../actions/weather-data";
 import MoreInfoBlock from "./MoreInfoBlock";
 import MainInfoBlock from "./MainInfoBlock";
 
-const MainCardContainer = styled.div`
+const Container = styled.div`
   max-width: 1120px;
   width: 100%;
   margin: 0 auto;
@@ -19,9 +19,9 @@ const MainCardContainer = styled.div`
   z-index: 1;
 `;
 
-const MainCardBlock = styled.div`
-  background-image: ${props => (props.bgImg ? `url(${props.bgImg})` : "")};
-  margin-top: ${props => props.mTop};
+const Block = styled.div`
+  background-image: ${p => (p.bgImg ? `url(${p.bgImg})` : null)};
+  margin-top: ${p => p.mTop};
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -49,12 +49,12 @@ class MainCard extends Component {
 
     if (!isEmpty(weatherInfo)) {
       return (
-        <MainCardBlock bgImg={weatherInfo.mainImg} mTop={this.props.mTop}>
-          <MainCardContainer>
+        <Block bgImg={weatherInfo.mainImg} mTop={this.props.mTop}>
+          <Container>
             <MainInfoBlock data={weatherInfo.mainInfo} />
             <MoreInfoBlock data={weatherInfo.moreInfo} />
-          </MainCardContainer>
-        </MainCardBlock>
+          </Container>
+        </Block>
       );
     }
 

@@ -35,14 +35,18 @@ const SliderBlock = styled.div`
 `;
 
 class Forecast extends Component {
-  settings = {
-    variableWidth: true,
-    infinite: false,
-    speed: 500,
-    slidesToScroll: 1,
-    arrows: true,
-    draggable: false
-  };
+  constructor(props) {
+    super(props);
+
+    this.settings = {
+      variableWidth: true,
+      infinite: false,
+      speed: 500,
+      slidesToScroll: 1,
+      arrows: true,
+      draggable: false
+    };
+  }
 
   componentDidMount() {
     this.props.fetchRequest(this.props.location);

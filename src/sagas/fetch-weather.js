@@ -2,13 +2,12 @@ import axios from "axios";
 import { call, put, takeLatest } from "redux-saga/effects";
 
 import { filterInfoForMainCard } from "../utils";
+import config from "../config";
 import { actionTypes } from "../actions/weather-data";
 import { setData as weatherSetData } from "../actions/weather-data";
 
 function getApiData(payload) {
-  const ROOT_URL = `http://api.openweathermap.org/data/2.5/weather`;
-
-  let url = `${ROOT_URL}?lat=${payload.lat}&lon=${
+  let url = `${config.weather}?lat=${payload.lat}&lon=${
     payload.lng
   }&units=metric&appid=${process.env.REACT_APP_WEATHER_KEY}`;
 
