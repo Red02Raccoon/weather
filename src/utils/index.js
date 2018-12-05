@@ -72,7 +72,6 @@ export function getDayName(index) {
 
 // Data conversion from API.
 export function filterInfoForMainCard(data) {
-  console.log(data);
   return {
     mainImg: getMainImg(data.weather[0].id),
     mainInfo: {

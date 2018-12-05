@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { object } from "prop-types";
 import MediaQuery from "react-responsive";
 import styled from "styled-components";
 
@@ -121,6 +122,10 @@ const ArrowIconWrap = styled.div`
 `;
 
 class MoreInfoBlock extends Component {
+  static propTypes = {
+    data: object
+  };
+
   state = {
     isOpen: false
   };
