@@ -1,26 +1,22 @@
-import React, { Component } from "react";
-import logo from "../images/icons/sun.jpg";
-import "./App.css";
+import React, { Fragment, Component } from "react";
+
+import { Wrapper } from "../components/styled";
+import Header from "../components/header";
+import MainCard from "../components/main-card";
+import Forecast from "../components/forecast";
+import Footer from "../components/footer";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Weather App
-          </a>
-        </header>
-      </div>
+      <Fragment>
+        <Header />
+        <Wrapper>
+          <MainCard />
+          <Forecast mTop="35px" mB="55px" />
+        </Wrapper>
+        <Footer />
+      </Fragment>
     );
   }
 }
