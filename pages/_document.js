@@ -34,7 +34,7 @@ export default class MyDocument extends Document {
           {this.props.styleTags}
           <script
             type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=%REACT_APP_GOOGLE_PLACES_KEY%&libraries=places"
+            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_PLACES_KEY}&libraries=places`}
           />
         </Head>
         <body>

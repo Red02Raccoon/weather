@@ -7,6 +7,20 @@
         "ssr": true,
         "displayName": true,
         "preprocess": false
+      },
+      "inline-react-svg",
+      {
+        "svgo": {
+          "plugins": [
+            {
+              "removeAttrs": { "attrs": "(data-name)" }
+            },
+            {
+              "cleanupIDs": true
+            }
+          ]
+
+        }
       }
     ]
   ]
