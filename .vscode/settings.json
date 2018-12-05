@@ -1,5 +1,5 @@
 {
-	"workbench.editor.tabSizing": "shrink",
+
   "editor.tabSize": 2,
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
@@ -13,4 +13,6 @@
   "emmet.syntaxProfiles": {
     "javascript": "jsx"
   }
+
 }
+
