@@ -5,7 +5,6 @@ import initStore from '../lib/initRedux';
 import withRedux from 'next-redux-wrapper';
 import "../styles/index.scss";
 import Header from "../components/header";
-// import Cat from '../svgs/cat.svg';
 
 class Layout extends React.Component {
   render() {
@@ -25,7 +24,6 @@ class MyApp extends App {
     return (
       <Container>
         <Layout>
-        {/* <Cat /> */}
           <Component {...pageProps} />
         </Layout>
       </Container>
