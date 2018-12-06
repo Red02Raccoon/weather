@@ -7,6 +7,8 @@ import { actionTypes } from "../actions/weather-data";
 import { setData as weatherSetData } from "../actions/weather-data";
 
 function getApiData(payload) {
+  console.log(payload);
+
   let url = `${config.weather}?lat=${payload.lat}&lon=${
     payload.lng
   }&units=metric&appid=${process.env.REACT_APP_WEATHER_KEY}`;
@@ -24,6 +26,8 @@ function getApiData(payload) {
 function* fetchSaga({ payload }) {
   try {
     const response = yield call(getApiData, payload);
+    console.log(response);
+
     const mainCard = filterInfoForMainCard(response);
 
     yield put(weatherSetData(mainCard));

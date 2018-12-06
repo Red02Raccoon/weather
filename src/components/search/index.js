@@ -87,13 +87,18 @@ class Search extends Component {
     this.setState({ address });
 
     geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
+      .then(results => {
+        console.log(results);
+        return getLatLng(results[0]);
+      })
       .then(latLng => {
-        this.props.weatherFetch(latLng);
-        this.props.forecastDaysFetch(latLng);
+        const { weatherFetch, forecastDaysFetch, setDateLocation } = this.props;
 
+        weatherFetch(latLng);
+        forecastDaysFetch(latLng);
+
+        setDateLocation(latLng);
         this.setState({ address: "" });
-        this.props.setDateLocation(latLng);
       })
       .catch(error => console.error("Error", error));
   };
