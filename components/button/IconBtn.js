@@ -3,16 +3,13 @@ import styled from "styled-components";
 import { string, func } from "prop-types";
 
 export const Button = styled.button`
-  border: none;
-  padding: 0;
-  margin: 0;
-  outline: none;
   display: inline-block;
   position: relative;
   background-color: transparent;
   opacity: 0.9;
   transition: 0.3s;
   cursor: ${p => (p.inactive ? "default" : "pointer")};
+  margin: ${p => (p.margin ? p.margin : 0)};
   width: ${p => p.width || "28px"};
   height: ${p => p.height || "28px"};
   &:hover {
@@ -20,6 +17,16 @@ export const Button = styled.button`
   }
   svg {
     display: block;
+  }
+  svg path {
+    fill: #fff;
+    transition: fill 0.3s;
+  }
+  &:hover {
+    color: #ee3129;
+    svg path {
+      fill: #ee3129;
+    }
   }
 `;
 

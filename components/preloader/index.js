@@ -1,7 +1,8 @@
 import React from "react";
 import { string } from "prop-types";
 import styled, { css } from "styled-components";
-// import { ReactComponent as SpinnerSvg } from "../../images/icons/preloader.svg";
+
+import SpinerSvg from "../../static/img/icons/preloader.svg";
 
 const Spinner = styled.div`
   display: inline-block;
@@ -28,8 +29,7 @@ const Spinner = styled.div`
 const Preloader = props => {
   return (
     <Spinner {...props}>
-      {/* <SpinnerSvg /> */}
-      <span>loading</span>
+      <SpinerSvg />
     </Spinner>
   );
 };

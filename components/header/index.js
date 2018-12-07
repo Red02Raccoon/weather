@@ -1,10 +1,13 @@
 import React from "react";
+import MediaQuery from "react-responsive";
 import styled from "styled-components";
+
 import { Container } from "../styled";
 import Search from "../search";
 import Ham from "../button/Ham";
-import IconBtn from "../button/IconBtn";
-import Placeholder from "../../static/img/icons/placeholder.svg";
+
+import RefreshInfo from "../refresh-info";
+import CurrentLocation from "../current-location";
 
 const Header = styled.header`
   height: 66px;
@@ -30,6 +33,13 @@ const Middle = styled.div`
 `;
 const End = styled.div``;
 
+const CurrentLocationBtn = styled.div`
+  display: inline-block;
+  @media (min-width: 751px) {
+    margin-right: 15px;
+  }
+`;
+
 const HeaderComponent = () => {
   return (
     <Header>
@@ -42,9 +52,12 @@ const HeaderComponent = () => {
             <Search />
           </Middle>
           <End>
-            <IconBtn title="change location">
-              <Placeholder />
-            </IconBtn>
+						<CurrentLocationBtn>
+              <CurrentLocation />
+            </CurrentLocationBtn>
+            <MediaQuery minWidth={751}>
+              <RefreshInfo />
+            </MediaQuery>
           </End>
         </Content>
       </Container>
