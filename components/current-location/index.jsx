@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import withRedux from 'next-redux-wrapper';
+import {connect} from 'react-redux';
 
 import { fetchRequest as weatherFetch } from "../../actions/weather-data";
 import { fetchRequest as forecastDaysFetch } from "../../actions/forecast-days";
@@ -59,13 +59,5 @@ class CurrentLocationBtn extends Component {
   }
 }
 
-// export default withRedux(
-//   null,
-//   {
-//     weatherFetch,
-//     forecastDaysFetch,
-//     setDateLocation
-//   }
-// )(CurrentLocationBtn);
-
-export default CurrentLocationBtn;
+export default connect(null, {weatherFetch,forecastDaysFetch,setDateLocation})(CurrentLocationBtn)
+// export default CurrentLocationBtn;

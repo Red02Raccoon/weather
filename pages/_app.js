@@ -1,7 +1,8 @@
 import React from "react";
 import App, { Container } from "next/app";
 import { Provider } from 'react-redux';
-import initStore from '../lib/initRedux';
+// import initStore from '../lib/initRedux';
+import {initStore} from '../store';
 import withRedux from 'next-redux-wrapper';
 import "../styles/index.scss";
 import Header from "../components/header";
