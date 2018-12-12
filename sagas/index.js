@@ -1,10 +1,12 @@
-import {delay} from 'redux-saga'
-import {all, call, put, take, takeLatest} from 'redux-saga/effects'
+import { all } from "redux-saga/effects";
+import es6promise from 'es6-promise';
 
-import {actionTypes} from '../lib/actions'
+import fetchWeather from "./fetch-weather";
+import fetchForecastDays from "./fetch-forecast-days";
 
-function * rootSaga () {
-  
+export default function* rootSaga() {
+  yield all([
+		fetchWeather(),
+		fetchForecastDays()
+	]);
 }
-
-export default rootSaga

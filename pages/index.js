@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
-const Title = styled.h1`
-  color: red;
-`;
+import MainCard from '../components/main-card';
+import Forecast from '../components/forecast';
 
 const Index = props => {
   return (
     <div>
-      <Title>My First Next.js Page </Title>
+			<MainCard/>
+			<Forecast mTop="35px" mB="55px"/>
     </div>
   );
 };

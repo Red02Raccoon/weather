@@ -5,6 +5,11 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng
 } from "react-places-autocomplete";
+
+import { fetchRequest as weatherFetch } from "../../actions/weather-data";
+import { fetchRequest as forecastDaysFetch } from "../../actions/forecast-days";
+import { setData as setDateLocation } from "../../actions/location";
+
 import Preloader from "../preloader";
 
 const Form = styled.form``;
@@ -38,6 +43,7 @@ const Combobox = styled.div`
   &.open {
     ul {
       opacity: 1;
+      z-index: 2;
     }
   }
 `;
@@ -71,8 +77,6 @@ class Search extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.value);
-    // perform an ajax call
   };
 
   handleChange = address => {
@@ -80,11 +84,21 @@ class Search extends Component {
   };
 
   handleSelect = address => {
-    console.log(address, "address");
     this.setState({ address });
+
     geocodeByAddress(address)
-      .then(results => getLatLng(results[0]))
-      .then(latLng => console.log("Success", latLng)) // perform an ajax call
+      .then(results => {
+        return getLatLng(results[0]);
+      })
+      .then(latLng => {
+        const { weatherFetch, forecastDaysFetch, setDateLocation } = this.props;
+
+        weatherFetch(latLng);
+        forecastDaysFetch(latLng);
+
+        setDateLocation(latLng);
+        this.setState({ address: "" });
+      })
       .catch(error => console.error("Error", error));
   };
 
@@ -138,5 +152,7 @@ class Search extends Component {
   }
 }
 
-// export default connect(null)(Search);
-export default Search;
+export default connect(
+  null,
+  { weatherFetch, forecastDaysFetch, setDateLocation }
+)(Search);

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import withRedux from 'next-redux-wrapper';
-
+import {connect} from 'react-redux';
 
 import { fetchRequest as weatherFetch } from "../../actions/weather-data";
 import { fetchRequest as forecastDaysFetch } from "../../actions/forecast-days";
-import RefreshIcon from "../../static/img/icons/update-arrows.svg";
+
 import IconBtn from "../button/IconBtn";
+import RefreshIcon from "../../static/img/icons/update-arrows.svg";
 
 class CurrentLocationBtn extends Component {
   handleClick = () => {
@@ -34,7 +34,7 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRedux(
+export default connect(
   mapStateToProps,
   { weatherFetch, forecastDaysFetch }
 )(CurrentLocationBtn);

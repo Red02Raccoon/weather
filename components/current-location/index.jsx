@@ -60,4 +60,3 @@ class CurrentLocationBtn extends Component {
 }
 
 export default connect(null, {weatherFetch,forecastDaysFetch,setDateLocation})(CurrentLocationBtn)
-// export default CurrentLocationBtn;

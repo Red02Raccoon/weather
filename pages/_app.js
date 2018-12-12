@@ -1,32 +1,49 @@
-import React from "react";
-import App, { Container } from "next/app";
+import React, {Fragment} from "react";
 import { Provider } from 'react-redux';
-// import initStore from '../lib/initRedux';
-import {initStore} from '../store';
 import withRedux from 'next-redux-wrapper';
-import "../styles/index.scss";
+import App, { Container } from "next/app";
+
+import initStore from '../config/store';
+
+import {Wrapper,ContentContainer} from '../components/styled';
 import Header from "../components/header";
+import Footer from "../components/footer";
+
+import "../styles/index.scss";
 
 class Layout extends React.Component {
   render() {
     const { children } = this.props;
     return (
-      <div className="layout">
-        <Header />
-        {children}
-      </div>
+			<Fragment>
+				<Wrapper>
+					<Header />
+					<ContentContainer>
+						{children}
+					</ContentContainer>
+				</Wrapper>
+				<Footer/>
+			</Fragment>
     );
   }
 }
 
 class MyApp extends App {
+	static async getInitialProps ({Component, ctx}) {
+    return {
+      pageProps: (Component.getInitialProps ? await Component.getInitialProps(ctx) : {})
+    }
+	}
+	
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, store } = this.props;
     return (
       <Container>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+				<Provider store={store}>
+					<Layout>
+						<Component {...pageProps} />
+					</Layout>
+				</Provider>
       </Container>
     );
   }
