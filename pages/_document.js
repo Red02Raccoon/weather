@@ -32,6 +32,7 @@ export default class MyDocument extends Document {
           />
           {/* Step 5: Output the styles in the head  */}
           {this.props.styleTags}
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
           <script
             type="text/javascript"
             src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_PLACES_KEY}&libraries=places`}
