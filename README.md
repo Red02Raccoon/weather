@@ -22,5 +22,3 @@
 - refactor (refactoring production code)
 - test (adding missing tests, refactoring tests; no production code change)
 - chore (updating grunt tasks etc; no production code change)
-
-- chore: add Oyster build script
